@@ -31,3 +31,13 @@ button{
 	font-family:calibri;
 	font-size:20;
 }
+
+#tab{
+	width:50%;
+	margin:auto;
+	border-radius:10px;
+	font-family:calibri;
+}
+
+
+
