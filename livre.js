@@ -74,6 +74,8 @@ function addBook(){
 	} else {
 		listbooks.push(book);
 		localStorage.setItem("listbooks", JSON.stringify(listbooks));
+		
+		document.getElementById('box').style.display= 'block' ; 
 	}
 }
 showBooks();
