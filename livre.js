@@ -17,7 +17,7 @@ input.addEventListener("keyup", function(event) {
 
 
 //récupération des livres de l'api
-function showBooks(){
+function showBooksByApi(){
 	var xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function() {
@@ -36,18 +36,20 @@ function addBook(){
 
 	var titre = document.getElementById("titre").value;
 	var auteur = document.getElementById("auteur").value;
-	var isbn = document.getElementById("isbn").value;
+	var isbn = document.getElementById("ISBN").value;
 
 	var book = new Book(titre, auteur, isbn);
-	var testObject = { 'one': 1, 'two': 2, 'three': 3 };
+	var listbooks = JSON.parse(localStorage.getItem("listbooks"));
 
-	// Put the object into storage
-	/*localStorage.setItem('testObject', JSON.stringify(testObject));
+	if(listbooks == null){
+		localStorage.setItem("listbooks", JSON.stringify([book]));
+	} else {
+		listbooks.push(book);
+		localStorage.setItem("listbooks", JSON.stringify(listbooks));
+	}
 
-	// Retrieve the object from storage
-	var retrievedObject = localStorage.getItem('testObject');
-
-	console.log('retrievedObject: ', JSON.parse(retrievedObject));*/
+	showbooks();
 }
 
-showBooks();
+showBooksByApi();
+//localStorage.clear();
