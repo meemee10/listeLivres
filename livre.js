@@ -15,21 +15,49 @@ input.addEventListener("keyup", function(event) {
   }
 }); 
 
+function showBooks(){
+	var listbooks = JSON.parse(localStorage.getItem("listbooks"));
+
+	for(var i in listbooks) { 
+	    var foo = document.getElementById('tab').insertRow(-1);
+		var cell1 = foo.insertCell(0);
+		var cell2 = foo.insertCell(1);
+		var cell3 = foo.insertCell(2);
+		cell1.innerHTML = listbooks[i].titre;
+		cell2.innerHTML = listbooks[i].auteur;
+		cell3.innerHTML = listbooks[i].isbn;
+	}
+	BooksByApi();
+}
 
 //récupération des livres de l'api
-function showBooksByApi(){
+function BooksByApi(){
 	var xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
 			var response = xhttp.responseText;
 			console.log(response);
-			//showjson(response);
+			showBooksByApi(response);
 		};
 	}
 
 	xhttp.open('GET', 'https://api.scorelooker.com/books', true);
 	xhttp.send();
+}
+
+function showBooksByApi(response){
+	var listbooks = JSON.parse(response);
+	console.log(listbooks);
+	for(var i in listbooks){
+		var foo = document.getElementById('tab').insertRow(-1);
+		var cell1 = foo.insertCell(0);
+		var cell2 = foo.insertCell(1);
+		var cell3 = foo.insertCell(2);
+		cell1.innerHTML = listbooks[i].titre;
+		cell2.innerHTML = listbooks[i].auteur;
+		cell3.innerHTML = listbooks[i].ISBN;
+	}
 }
 
 function addBook(){
@@ -47,9 +75,6 @@ function addBook(){
 		listbooks.push(book);
 		localStorage.setItem("listbooks", JSON.stringify(listbooks));
 	}
-
-	showbooks();
 }
-
-showBooksByApi();
+showBooks();
 //localStorage.clear();
