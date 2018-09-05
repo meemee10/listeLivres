@@ -1,0 +1,33 @@
+fieldset{
+	margin: 5% 5%;
+}
+
+
+h1{
+	font-family:calibri;		
+}
+
+h4{
+	font-family:calibri;	
+}
+
+
+input[type=text] {
+	width:100%;
+   	padding:10px;
+	font-family:calibri;	
+	border-radius:10px;
+	border:solid #d5e1df;
+}
+
+
+button{
+	width:90%;
+	padding:10px;
+	margin:4% 5%;
+	background-color:#bdcebe;
+	border-radius:10px;
+	border-color:#bdcebe;
+	font-family:calibri;
+	font-size:20;
+}
