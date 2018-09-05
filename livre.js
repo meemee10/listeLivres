@@ -64,7 +64,7 @@ function addBook(){
 
 	var titre = document.getElementById("titre").value;
 	var auteur = document.getElementById("auteur").value;
-	var isbn = document.getElementById("isbn").value;
+	var isbn = document.getElementById("ISBN").value;
 
 	var book = new Book(titre, auteur, isbn);
 	var listbooks = JSON.parse(localStorage.getItem("listbooks"));
@@ -74,6 +74,8 @@ function addBook(){
 	} else {
 		listbooks.push(book);
 		localStorage.setItem("listbooks", JSON.stringify(listbooks));
+		
+		document.getElementById('box').style.display= 'block' ; 
 	}
 }
 showBooks();

@@ -21,7 +21,7 @@ input[type=text] {
 }
 
 
-button{
+#add{
 	width:90%;
 	padding:10px;
 	margin:4% 5%;
@@ -39,5 +39,14 @@ button{
 	font-family:calibri;
 }
 
+#box{
+	background-color:lightgreen;
+	font-family:calibri;
+	width:10%;	
+}
+
+.close{
+	
+}
 
 
