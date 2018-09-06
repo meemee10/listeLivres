@@ -69,32 +69,42 @@ function addBook(){
 	var auteur = document.getElementById("auteur").value;
 	var isbn = document.getElementById("ISBN").value;
 	
-	
-	if(titre=='',auteur=='', isbn=='') {
-		
-		alert("Veuillez remplir tous les champs");
-		
+	if(titre=='' ||auteur=='' || isbn=='') {
+		alert("Veuillez remplir tous les champs");	
 	} 
+	
 	else {
 		
-	var book = new Book(titre, auteur, isbn);
-	var listbooks = JSON.parse(localStorage.getItem("listbooks"));
-
-	if(listbooks == null){
-		localStorage.setItem("listbooks", JSON.stringify([book]));
-	} else {
-		listbooks.push(book);
-		localStorage.setItem("listbooks", JSON.stringify(listbooks));
+		var listbooks = JSON.parse(localStorage.getItem("listbooks"));
+		var next=true;
 		
-		document.getElementById('box').style.display='block';
-		setTimeout(function() {
-		document.getElementById('box').style.display='none';
-		},4000);
-	}
+		for(var i = 0;i < listbooks.length;i++) {
+			if(isbn == listbooks[i].ISBN){
+				next=false;
+				alert("ISBN déjà existant");
+			}
+		}
+		if(next==true) {
+			var book = new Book(titre, auteur, isbn);
+			var listbooks = JSON.parse(localStorage.getItem("listbooks"));
 
-	showBooks(book);
+			if(listbooks == null){
+				localStorage.setItem("listbooks", JSON.stringify([book]));
+			} else {
+				listbooks.push(book);
+				localStorage.setItem("listbooks", JSON.stringify(listbooks));
+				
+				document.getElementById('box').style.display='block';
+				setTimeout(function() {
+				document.getElementById('box').style.display='none';
+				},4000);
+			}
+
+			showBooks(book);
+		}
 	}
 }
+		
 
 //suppression d'une task
 function removetr(){
