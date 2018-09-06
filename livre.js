@@ -42,6 +42,27 @@ function getListBooksByApi(){
 	xhttp.send();
 }
 
+function showBooks(book){
+
+	var button = document.createElement("button");
+	var text = document.createTextNode("\u00D7");
+	button.className="close";
+	button.appendChild(text);
+
+	var foo = document.getElementById('tab').insertRow(-1);
+	var cell1 = foo.insertCell(0);
+	var cell2 = foo.insertCell(1);
+	var cell3 = foo.insertCell(2);
+	var cell4 = foo.insertCell(3);
+	cell1.innerHTML = book.titre;
+	cell2.innerHTML = book.auteur;
+	cell3.innerHTML = book.ISBN;
+	cell4.appendChild(button);
+
+	button.addEventListener("click", removetr);
+}
+
+
 function addBook(){
 
 	var titre = document.getElementById("titre").value;
@@ -67,16 +88,21 @@ function addBook(){
 
 }
 
-function showBooks(book){
-	var foo = document.getElementById('tab').insertRow(-1);
-	var cell1 = foo.insertCell(0);
-	var cell2 = foo.insertCell(1);
-	var cell3 = foo.insertCell(2);
-	var cell4 = foo.insertCell(3);
-	cell1.innerHTML = book.titre;
-	cell2.innerHTML = book.auteur;
-	cell3.innerHTML = book.ISBN;
-	cell4.outerHTML = "<button class='close'>×</button>";
+//suppression d'une task
+function removetr(){
+	var isbn = this.parentElement.parentElement.children[2].innerHTML;
+
+	var listbooks = JSON.parse(localStorage.getItem("listbooks"));
+	console.log(listbooks);
+	for(var i = 0;i < listbooks.length;i++){
+		if(isbn == listbooks[i].ISBN){
+			listbooks.splice(i, 1);
+		}
+	}
+	localStorage.setItem("listbooks", JSON.stringify(listbooks));
+
+	var tr = this.parentElement.parentElement;
+	tr.remove();
 }
 
 getListBooksByApi();
