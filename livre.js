@@ -57,10 +57,14 @@ function addBook(){
 		listbooks.push(book);
 		localStorage.setItem("listbooks", JSON.stringify(listbooks));
 		
-		document.getElementById('box').style.display= 'block' ; 
+		document.getElementById('box').style.display='block';
+		setTimeout(function() {
+		document.getElementById('box').style.display='none';
+		},3000);
 	}
 
 	showBooks(book);
+<<<<<<< HEAD
 }
 
 function showBooks(book){
@@ -76,3 +80,23 @@ function showBooks(book){
 }
 
 getListBooksByApi();
+=======
+}
+
+function showBooks(book){
+	var foo = document.getElementById('tab').insertRow(-1);
+	var cell1 = foo.insertCell(0);
+	var cell2 = foo.insertCell(1);
+	var cell3 = foo.insertCell(2);
+	var cell4 = foo.insertCell(3);
+	cell1.innerHTML = book.titre;
+	cell2.innerHTML = book.auteur;
+	cell3.innerHTML = book.ISBN;
+	cell4.outerHTML = "<button class='close'>×</button>";
+	
+}
+
+getListBooksByApi();
+
+
+>>>>>>> meeraBranch
