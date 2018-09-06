@@ -1,9 +1,8 @@
 function Book(titre, auteur, isbn){
 	this.titre = titre;
 	this.auteur = auteur;
-	this.isbn = isbn;
+	this.ISBN = isbn;
 }
-
 
 //permet d'utiliser la touche entrer
 var input = document.getElementById("add");
@@ -15,49 +14,32 @@ input.addEventListener("keyup", function(event) {
   }
 }); 
 
-function showBooks(){
-	var listbooks = JSON.parse(localStorage.getItem("listbooks"));
 
+//récupération 
+function getBooks(){
+	var listbooks = JSON.parse(localStorage.getItem("listbooks"));
 	for(var i in listbooks) { 
-	    var foo = document.getElementById('tab').insertRow(-1);
-		var cell1 = foo.insertCell(0);
-		var cell2 = foo.insertCell(1);
-		var cell3 = foo.insertCell(2);
-		cell1.innerHTML = listbooks[i].titre;
-		cell2.innerHTML = listbooks[i].auteur;
-		cell3.innerHTML = listbooks[i].isbn;
+	    showBooks(listbooks[i]);
 	}
-	BooksByApi();
 }
 
 //récupération des livres de l'api
-function BooksByApi(){
+function getListBooksByApi(){
 	var xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
 			var response = xhttp.responseText;
-			console.log(response);
-			showBooksByApi(response);
+			var listbooks = JSON.parse(response);
+			for(var i in listbooks){
+				showBooks(listbooks[i]);
+			}
+			getBooks();
 		};
 	}
 
 	xhttp.open('GET', 'https://api.scorelooker.com/books', true);
 	xhttp.send();
-}
-
-function showBooksByApi(response){
-	var listbooks = JSON.parse(response);
-	console.log(listbooks);
-	for(var i in listbooks){
-		var foo = document.getElementById('tab').insertRow(-1);
-		var cell1 = foo.insertCell(0);
-		var cell2 = foo.insertCell(1);
-		var cell3 = foo.insertCell(2);
-		cell1.innerHTML = listbooks[i].titre;
-		cell2.innerHTML = listbooks[i].auteur;
-		cell3.innerHTML = listbooks[i].ISBN;
-	}
 }
 
 function addBook(){
@@ -75,6 +57,20 @@ function addBook(){
 		listbooks.push(book);
 		localStorage.setItem("listbooks", JSON.stringify(listbooks));
 	}
+
+	showBooks(book);
 }
-showBooks();
-//localStorage.clear();
+
+function showBooks(book){
+	var foo = document.getElementById('tab').insertRow(-1);
+	var cell1 = foo.insertCell(0);
+	var cell2 = foo.insertCell(1);
+	var cell3 = foo.insertCell(2);
+	var cell4 = foo.insertCell(3);
+	cell1.innerHTML = book.titre;
+	cell2.innerHTML = book.auteur;
+	cell3.innerHTML = book.ISBN;
+	cell4.outerHTML = "<button class='close'>×</button>";
+}
+
+getListBooksByApi();
