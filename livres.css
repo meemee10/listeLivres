@@ -33,13 +33,10 @@ input[type=text] {
 }
 
 #tab{
-	width:70%;
+	width:50%;
 	margin:auto;
-	padding:auto;
 	border-radius:10px;
 	font-family:calibri;
-	background-color:#DCDCDC;
-	text-align:center;
 }
 
 #box{
@@ -51,7 +48,5 @@ input[type=text] {
 .close{
 	
 }
-
-
 
 
