@@ -68,7 +68,15 @@ function addBook(){
 	var titre = document.getElementById("titre").value;
 	var auteur = document.getElementById("auteur").value;
 	var isbn = document.getElementById("ISBN").value;
-
+	
+	
+	if(titre=='',auteur=='', isbn=='') {
+		
+		alert("Veuillez remplir tous les champs");
+		
+	} 
+	else {
+		
 	var book = new Book(titre, auteur, isbn);
 	var listbooks = JSON.parse(localStorage.getItem("listbooks"));
 
@@ -85,7 +93,7 @@ function addBook(){
 	}
 
 	showBooks(book);
-
+	}
 }
 
 //suppression d'une task
@@ -94,6 +102,7 @@ function removetr(){
 
 	var listbooks = JSON.parse(localStorage.getItem("listbooks"));
 	console.log(listbooks);
+	
 	for(var i = 0;i < listbooks.length;i++){
 		if(isbn == listbooks[i].ISBN){
 			listbooks.splice(i, 1);
