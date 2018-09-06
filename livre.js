@@ -60,7 +60,7 @@ function addBook(){
 		document.getElementById('box').style.display='block';
 		setTimeout(function() {
 		document.getElementById('box').style.display='none';
-		},3000);
+		},4000);
 	}
 
 	showBooks(book);
