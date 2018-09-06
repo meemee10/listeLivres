@@ -101,9 +101,21 @@ function removetr(){
 	}
 	localStorage.setItem("listbooks", JSON.stringify(listbooks));
 
+	document.getElementById('boxDelete').style.display='block';
+		setTimeout(function() {
+		document.getElementById('boxDelete').style.display='none';
+		 },4000);	
+
+	
 	var tr = this.parentElement.parentElement;
 	tr.remove();
+	
+	
 }
 
 getListBooksByApi();
+
+
+
+	
 

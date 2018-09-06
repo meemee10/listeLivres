@@ -52,6 +52,15 @@ input[type=text] {
 	text-align:center;
 }
 
+#boxDelete{
+
+	background-color:#CD5C5C;
+	font-family:calibri;
+	width:10%;
+	border-radius:10px;
+	text-align:center;
+}
+
 .close{
 	border:none;
 	background-color: #ffffff;
