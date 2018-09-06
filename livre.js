@@ -57,7 +57,10 @@ function addBook(){
 		listbooks.push(book);
 		localStorage.setItem("listbooks", JSON.stringify(listbooks));
 		
-		document.getElementById('box').style.display= 'block' ; 
+		document.getElementById('box').style.display='block';
+		setTimeout(function() {
+		document.getElementById('box').style.display='none';
+		},3000);
 	}
 
 	showBooks(book);
@@ -73,6 +76,9 @@ function showBooks(book){
 	cell2.innerHTML = book.auteur;
 	cell3.innerHTML = book.ISBN;
 	cell4.outerHTML = "<button class='close'>×</button>";
+	
 }
 
 getListBooksByApi();
+
+
